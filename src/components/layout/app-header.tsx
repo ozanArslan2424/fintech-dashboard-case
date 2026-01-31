@@ -2,7 +2,13 @@ import { DropdownIcon } from "@/components/icons/dropdown-icon";
 import { NotificationsIcon } from "@/components/icons/notifications-icon";
 import { SearchIcon } from "@/components/icons/search-icon";
 import { AppSidebar } from "@/components/layout/app-sidebar";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import {
+	Drawer,
+	DrawerContent,
+	DrawerDescription,
+	DrawerTitle,
+	DrawerTrigger,
+} from "@/components/ui/drawer";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -42,6 +48,8 @@ export function AppHeader() {
 					</div>
 
 					<DrawerContent>
+						<DrawerTitle className="sr-only">App Sidebar</DrawerTitle>
+						<DrawerDescription className="sr-only">Navigation</DrawerDescription>
 						<AppSidebar />
 					</DrawerContent>
 
