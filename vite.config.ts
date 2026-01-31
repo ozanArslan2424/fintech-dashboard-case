@@ -5,6 +5,7 @@ import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
+	console.log(mode);
 	process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
 	return {
@@ -14,10 +15,7 @@ export default defineConfig(({ mode }) => {
 				"@": path.resolve(__dirname, "./src"),
 			},
 		},
-		build: {
-			assetsDir: "static",
-		},
-		...(process.env.NODE_ENV !== "production" && {
+		...(mode === "development" && {
 			server: {
 				proxy: {
 					"/api": {
