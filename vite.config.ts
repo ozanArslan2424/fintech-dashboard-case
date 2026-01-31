@@ -5,7 +5,6 @@ import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-	console.log(mode);
 	process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
 	return {
@@ -15,17 +14,15 @@ export default defineConfig(({ mode }) => {
 				"@": path.resolve(__dirname, "./src"),
 			},
 		},
-		...(mode === "development" && {
-			server: {
-				proxy: {
-					"/api": {
-						target: process.env.VITE_API_URL,
-						changeOrigin: true,
-						rewrite: (path) => path.replace(/^\/api/, ""),
-						cookieDomainRewrite: process.env.VITE_DOMAIN,
-					},
+		server: {
+			proxy: {
+				"/proxy": {
+					target: process.env.VITE_API_URL,
+					changeOrigin: true,
+					rewrite: (path) => path.replace(/^\/proxy/, ""),
+					cookieDomainRewrite: process.env.VITE_DOMAIN,
 				},
 			},
-		}),
+		},
 	};
 });

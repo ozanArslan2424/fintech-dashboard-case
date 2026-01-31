@@ -17,7 +17,7 @@ function makeContext() {
 	});
 	const requestClient = new RequestClient(storeClient, {
 		// NOT: refreshToken cookie'sinde SameSite=Strict ayarı olduğu için vite.config.ts'ten proxy ayarı kullandım.
-		baseURL: "/api",
+		baseURL: "/proxy",
 		withCredentials: true,
 		refreshIgnoredEndpoints: [
 			apiRoutes.auth.refresh,
