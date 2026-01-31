@@ -56,11 +56,11 @@ const reducer = (state: State, action: Action): State => {
 
 // NOT: Swagger'da bütün hata durumları verilmemiş denk geldiklerime göre yaptım.
 const LoginFormSchema = z.object({
-	email: z.email(translate("login.email.error")),
+	email: z.email(translate("auth", "login.email.error")),
 	password: z
 		.string()
-		.min(8, translate("login.password.error.length"))
-		.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/, translate("login.password.error.regex")),
+		.min(8, translate("auth", "login.password.error.length"))
+		.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/, translate("auth", "login.password.error.regex")),
 });
 
 export function useLoginForm() {

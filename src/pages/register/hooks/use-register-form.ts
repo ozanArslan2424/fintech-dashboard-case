@@ -64,7 +64,7 @@ const reducer = (state: State, action: Action): State => {
 const RegisterFormSchema = z.object({
 	fullName: z
 		.string()
-		.min(1, translate("register.fullName.length"))
+		.min(1, translate("auth", "register.fullName.length"))
 		.refine(
 			(value) => {
 				const validPattern = /^[A-Za-z\s\-']+$/;
@@ -77,13 +77,16 @@ const RegisterFormSchema = z.object({
 					.filter((word) => word.length > 0);
 				return words.length >= 2;
 			},
-			{ error: translate("register.fullName.chars") },
+			{ error: translate("auth", "register.fullName.chars") },
 		),
-	email: z.email(translate("register.email.error")),
+	email: z.email(translate("auth", "register.email.error")),
 	password: z
 		.string()
-		.min(8, translate("register.password.error.length"))
-		.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/, translate("register.password.error.regex")),
+		.min(8, translate("auth", "register.password.error.length"))
+		.regex(
+			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+			translate("auth", "register.password.error.regex"),
+		),
 });
 
 export function useRegisterForm() {

@@ -23,5 +23,6 @@ language
 		},
 	});
 
-export const translate = (key: string) => language.t(key, { ns: "auth" });
+export type NS = keyof (typeof locales)["en-US"];
+export const translate = (ns: NS, key: string) => language.t(key, { ns });
 export default language;
