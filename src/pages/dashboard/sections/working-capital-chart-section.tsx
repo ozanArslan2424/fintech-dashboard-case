@@ -24,11 +24,15 @@ import { LoaderIcon } from "lucide-react";
 import { useState } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
+// NOT: Swagger'da böyle bir query görmedim. period="" şeklinde yolluyorum ama bir değişiklik yok.
+// Dokümentasyon olmadan eklenemez.
+const periodOptions = ["last6Months", "last7Days"];
+
 export function WorkingCapitalChartSection() {
 	const { t, makeTranslator } = useLanguage("finance");
 	const tCommon = makeTranslator("common");
 	const { financialApi } = useApiContext();
-	const [period, setPeriod] = useState("last6Months");
+	const [period, setPeriod] = useState(periodOptions[0]);
 	const workingCapitalQuery = useQuery(financialApi.getWorkingCapital(period));
 
 	const incomeDataKey = "income";
@@ -62,6 +66,10 @@ export function WorkingCapitalChartSection() {
 		);
 	}
 
+	function handlePeriodChange(value: string) {
+		setPeriod(value);
+	}
+
 	return (
 		<Card>
 			{workingCapitalQuery.isPending ? (
@@ -71,7 +79,6 @@ export function WorkingCapitalChartSection() {
 						<div />
 						<DropdownMenu>
 							<DropdownMenuTrigger className="secondary sm text-xs font-normal">
-								{/* NOT: Swagger'da böyle bir query görmedim. */}
 								{tCommon("loading")}
 								<DropdownIcon variant="line" />
 							</DropdownMenuTrigger>
@@ -118,14 +125,15 @@ export function WorkingCapitalChartSection() {
 									<ChartLegendContent {...props} />
 									<DropdownMenu>
 										<DropdownMenuTrigger className="secondary sm text-xs font-normal">
-											{/* NOT: Swagger'da böyle bir query görmedim. */}
-											{t("last6Months")}
+											{t(period)}
 											<DropdownIcon variant="line" />
 										</DropdownMenuTrigger>
 										<DropdownMenuContent>
-											<DropdownMenuItem onClick={() => setPeriod("last7Days")}>
-												{t("last7Days")}
-											</DropdownMenuItem>
+											{periodOptions.map((p) => (
+												<DropdownMenuItem key={p} onClick={() => handlePeriodChange(p)}>
+													{t(p)}
+												</DropdownMenuItem>
+											))}
 											<DropdownMenuItem>
 												Query parametreleriyle ilgili bir bilgi bulamadım.
 											</DropdownMenuItem>

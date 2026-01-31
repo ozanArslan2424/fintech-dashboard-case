@@ -81,6 +81,9 @@ export type RecentTransactionsModel = {
 			count: number;
 		};
 	}>;
+	query: {
+		limit?: number;
+	};
 };
 
 export type WorkingCapitalModel = {

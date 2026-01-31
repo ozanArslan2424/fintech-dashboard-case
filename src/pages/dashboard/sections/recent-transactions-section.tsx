@@ -13,13 +13,21 @@ import { useQuery } from "@tanstack/react-query";
 export function RecentTransactionsSection() {
 	const { t } = useLanguage("finance");
 	const { financialApi } = useApiContext();
-	const recentTransactionsQuery = useQuery(financialApi.getRecentTransactions());
+	const recentTransactionsQuery = useQuery(
+		financialApi.getRecentTransactions({
+			// NOT: Tasarımda limit 3 gözüküyor ve değiştirmek için bir input yok.
+			limit: 3,
+		}),
+	);
 
 	return (
 		<Card>
 			<CardHeader>
 				<CardTitle>{t("recentTransactions")}</CardTitle>
-				<ViewAllLink href={clientRoutes.transactions} />
+				<ViewAllLink
+					href={clientRoutes.transactions}
+					count={recentTransactionsQuery.data?.data.summary.count}
+				/>
 			</CardHeader>
 
 			{recentTransactionsQuery.error ? (

@@ -27,10 +27,10 @@ export class FinancialApi {
 			queryFn: () => this.requestClient.get(apiRoutes.financial.wallet),
 		});
 
-	getRecentTransactions = () =>
+	getRecentTransactions = (params?: RecentTransactionsModel["query"]) =>
 		this.queryClient.makeQuery<RecentTransactionsModel["response"]>({
-			queryKey: [apiRoutes.financial.transactions.recent],
-			queryFn: () => this.requestClient.get(apiRoutes.financial.transactions.recent),
+			queryKey: [apiRoutes.financial.transactions.recent, params],
+			queryFn: () => this.requestClient.get(apiRoutes.financial.transactions.recent, { params }),
 		});
 
 	getWorkingCapital = (period: string) =>
