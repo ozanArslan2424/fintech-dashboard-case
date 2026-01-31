@@ -1,9 +1,6 @@
 {
 	"rewrites": [
-		{
-			"source": "/proxy/:match*",
-			"destination": "${VITE_API_URL}/:match*"
-		},
+		{ "source": "/proxy/:match*", "destination": "https://case.nodelabs.dev/api/:match*" },
 		{ "source": "/(.*)", "destination": "/index.html" }
 	]
 }
