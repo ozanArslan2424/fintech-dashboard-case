@@ -1,0 +1,10 @@
+{
+	"login": "Login",
+	"register": "Register",
+	"dashboard": "Dashboard",
+	"transactions": "Transactions",
+	"invoices": "Invoices",
+	"mywallets": "My Wallets",
+	"settings": "Settings",
+	"help": "Help"
+}

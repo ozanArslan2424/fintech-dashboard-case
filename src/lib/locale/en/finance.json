@@ -1,0 +1,11 @@
+{
+	"workingCapital": "Working Capital",
+	"income": "Income",
+	"expense": "Expense",
+	"net": "Net",
+	"last6Months": "Last 6 Months",
+	"last7Days": "Last 7 Days",
+	"recentTransactions": "Recent Transactions",
+	"wallet": "Wallet",
+	"scheduledTransfers": "Scheduled Transfers"
+}

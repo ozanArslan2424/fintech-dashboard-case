@@ -1,0 +1,17 @@
+@import "./theme.css";
+
+@layer base {
+	input:not(.unset),
+	textarea:not(.unset),
+	.input-like {
+		@apply border-input focus-visible:border-ring h-12 w-full rounded-lg border px-5 py-4 text-sm transition-colors outline-none placeholder:font-medium disabled:opacity-50;
+	}
+
+	label:not(.unset) {
+		@apply block text-sm font-medium;
+	}
+
+	form input[data-error="true"] {
+		@apply border-rose-500!;
+	}
+}
