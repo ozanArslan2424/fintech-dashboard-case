@@ -86,7 +86,6 @@ export function useLoginForm() {
 		const email = searchParams.get("email");
 		if (email) {
 			dispatch({ type: "email", payload: email });
-			toast.success(t("register.success"));
 		}
 	}, [searchParams, t]);
 

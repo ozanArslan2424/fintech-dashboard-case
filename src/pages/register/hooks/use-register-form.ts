@@ -62,7 +62,23 @@ const reducer = (state: State, action: Action): State => {
 
 // NOT: Swagger'da bütün hata durumları verilmemiş denk geldiklerime göre yaptım.
 const RegisterFormSchema = z.object({
-	fullName: z.string().min(1, translate("register.fullName.error")),
+	fullName: z
+		.string()
+		.min(1, translate("register.fullName.length"))
+		.refine(
+			(value) => {
+				const validPattern = /^[A-Za-z\s\-']+$/;
+				if (!validPattern.test(value)) {
+					return false;
+				}
+				const words = value
+					.trim()
+					.split(/\s+/)
+					.filter((word) => word.length > 0);
+				return words.length >= 2;
+			},
+			{ error: translate("register.fullName.chars") },
+		),
 	email: z.email(translate("register.email.error")),
 	password: z
 		.string()
@@ -78,7 +94,8 @@ export function useRegisterForm() {
 	const registerMutation = useMutation(
 		authApi.register((res, err) => {
 			if (res !== undefined) {
-				navigate(clientRoutes.login);
+				navigate(`${clientRoutes.login}?email=${res.data.email}`);
+				toast.success(t("register.success"));
 			} else {
 				toast.error(t("register.error"));
 				dispatch({ type: "set_errors", payload: { _root: RequestHelper.getApiError(err) } });
