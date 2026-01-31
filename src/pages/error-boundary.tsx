@@ -17,18 +17,21 @@ export function ErrorBoundary() {
 				: "Unknown Error";
 
 	return (
-		<div className="flex min-h-screen w-full items-center justify-center">
-			<Card className="mx-auto max-w-lg">
-				<CardHeader className="flex-col items-start justify-start gap-2">
-					<CardTitle>{title}</CardTitle>
-					<p>{description}</p>
-				</CardHeader>
-				<div className="py-3">
-					<Link className="button" to={clientRoutes.dashboard}>
-						{t("back")}
-					</Link>
-				</div>
-			</Card>
-		</div>
+		<>
+			<title>{t("app")} - Error</title>
+			<div className="flex min-h-screen w-full items-center justify-center">
+				<Card className="mx-auto max-w-lg">
+					<CardHeader className="flex-col items-start justify-start gap-2">
+						<CardTitle>{title}</CardTitle>
+						<p>{description}</p>
+					</CardHeader>
+					<div className="py-3">
+						<Link className="button" to={clientRoutes.dashboard}>
+							{t("back")}
+						</Link>
+					</div>
+				</Card>
+			</div>
+		</>
 	);
 }

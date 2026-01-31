@@ -31,8 +31,8 @@ type Action =
 	| { type: "clear_errors" };
 
 const initialState: State = {
-	email: "ozanarslanodtu@gmail.com",
-	password: "123456789Aa",
+	email: "",
+	password: "",
 	errors: {},
 };
 
