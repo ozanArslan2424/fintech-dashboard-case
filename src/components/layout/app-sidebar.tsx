@@ -22,8 +22,10 @@ export function AppSidebar() {
 	const tPaths = makeTranslator("paths");
 	const tAuth = makeTranslator("auth");
 	const logoutMutation = useMutation(
-		authApi.logout(() => {
-			navigate(clientRoutes.login);
+		authApi.logout((_, err) => {
+			if (err === null) {
+				navigate(clientRoutes.login);
+			}
 		}),
 	);
 
