@@ -12,7 +12,7 @@ export function DropdownIcon({ variant = "filled" }: DropdownIconProps) {
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<g clip-path="url(#clip0_16018_57)">
+				<g clipPath="url(#clip0_16018_57)">
 					<path
 						d="M12.4425 6.4425L9 9.8775L5.5575 6.4425L4.5 7.5L9 12L13.5 7.5L12.4425 6.4425Z"
 						fill="#1B212D"
