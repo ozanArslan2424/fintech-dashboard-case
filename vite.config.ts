@@ -17,15 +17,17 @@ export default defineConfig(({ mode }) => {
 		build: {
 			assetsDir: "static",
 		},
-		server: {
-			proxy: {
-				"/api": {
-					target: process.env.VITE_API_URL,
-					changeOrigin: true,
-					rewrite: (path) => path.replace(/^\/api/, ""),
-					cookieDomainRewrite: process.env.VITE_DOMAIN,
+		...(process.env.NODE_ENV !== "production" && {
+			server: {
+				proxy: {
+					"/api": {
+						target: process.env.VITE_API_URL,
+						changeOrigin: true,
+						rewrite: (path) => path.replace(/^\/api/, ""),
+						cookieDomainRewrite: process.env.VITE_DOMAIN,
+					},
 				},
 			},
-		},
+		}),
 	};
 });
