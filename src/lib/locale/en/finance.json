@@ -1,4 +1,7 @@
 {
+	"totalBalance": "Total Balance",
+	"totalSpending": "Total Spending",
+	"totalSaved": "Total Saved",
 	"workingCapital": "Working Capital",
 	"income": "Income",
 	"expense": "Expense",
